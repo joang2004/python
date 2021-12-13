@@ -85,7 +85,7 @@ def volums():
     print("")
     opcio=input("Introdueix la teva opció: ")
     
-    while opció != "3":
+    while opcio != "3":
         if opcio == "1":
             print("")
             con()
