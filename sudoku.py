@@ -1,10 +1,6 @@
 
 """""
-1.Falta millorar s'output
-2.Simplificar el sistema de buleanes per fer s'output de Vàlid/Invàlid
-3.Arreglar el problema de que quan es detecta una falla en el 3x3 ho escriqui com ha fila valida (relacionat amb el punt 1 )
-4.Especificar el que ha de fer l'usuari cada vegada que doni error (ouput diferenciat per cada error)
-
+En aquest programa l'usuari entroduirà un sudoku per files, el programa comprovarà que estigui tot en ordre 
 """
 fila = 0
 linea= []
