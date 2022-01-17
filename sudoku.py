@@ -1,3 +1,4 @@
+
 """""
 1.Falta millorar s'output
 2.Simplificar el sistema de buleanes per fer s'output de Vàlid/Invàlid
@@ -127,74 +128,71 @@ def comprova_quadrats(valors):
             base_q_j +=1
     
         base_q_i +=1
+    return True
 
 
-while fila < 9 :
+fila = 0
+linea=[]
+valors=[]
 
-    print("Fila: " + str(fila))
 
-    while j_possible != True: #Input, comprova que els valors introduits partanyin ha [1,9]
+print("En aquest programa l'usuari anirà introduïnt els valors d'un sudoku, i el programa comprovarà que estigui bé.")
+
+while fila < 9:
+
+    fila_possible=None
+    columna_possible =None
+    quadrat_possible=None
+    valid= True #Unifica les dues buleanes possibles
+    linea.clear()
+    
+    
+    while fila_possible != True:
+        print()
+
+        print("FILA: " + str(fila))
+
+        for x in range(9):
+            n =input("Escriu el nombre nº " + str(x) + " de la fila: ")
+            linea.append(n)
         
-        for i in range(9):
-
-            x = input("Nombre: ")
-            linea.append(x)
-         
-        j_possible=linea_possible(linea,j_possible)
+        fila_possible=linea_possible(linea, fila_possible)
         
-        if j_possible== False:
-
+        if fila_possible == False:
             linea.clear()
             print()
     
-    for i in linea: #Afageix els nombres a la llista principal, a més, buida la llista d'entrada
-
+    for i in linea:
         valors.append(i)
-        print()
-        print(valors)
-        print()
-
-    linea.clear()    
-    j_possible=comprova_columna(valors)
-
-    if j_possible != False and fila in [2,5,8]:
-
-        q_possible=comprova_quadrats(valors)
-
-    if q_possible == False:
-
-        for i in range(27):
-
-            try:
-                valors.pop(-1)
-                print()
-                print(valors)
-                print()
-            except:
-                pass
-            print(i)
-
-        fila -=2
-        q_possible =None
-        quadrat = False
-
     
-    if j_possible == False:
-
+    if fila != 0:
+        print()
+        columna_possible=comprova_columna(valors)
+    
+    if columna_possible == False:
+        print()
         print("Fila invalida")
-
+        valors = False
         for i in range(9):
-
             valors.pop(-1)
     
-    if j_possible != False and q_possible != False and quadrat == True:# Encas que es repetesqui qualque nombre dintre de la columna s'activa i obliga a l'usuari a tornà ha introduïr els nombress
-
-        fila +=1
-        j_possible=None
-        q_possible = None
-
-        print("Fila Vàlida")
+    if valors != False and fila in [2,5,8]:
+        q_possible=comprova_quadrats(valors)
     
-    quadrat=True
+    if q_possible== False:
+        print()
+        print("Les tres derreres linees són invàlides")
 
-print("Sudoku correcte")
+        for i in range(27):
+            valors.pop(-1)
+        valid= False
+        fila -=2
+    
+    if valid ==True:
+        print()
+        fila +=1
+        print("Fila vàlida")
+
+
+print()
+print("El Sudoku és Correcte")
