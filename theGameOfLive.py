@@ -32,19 +32,22 @@ def Valors_Inicials(llista):
         linea_inicial=read(str)
     return llista
 
-def Llista_Resultat(inicial, pla, linea, columna):
-    resultat=pla.copy()
-    
-    for j in range(linea):
-        for i in range(columna):
-            veinat=Recompte_veinat(inicial, j,i, linea, columna)
-            x = Actualitza(inicial,veinat, j, i)
-            print("Resultat:"+str(x) + " " +str(inicial[j][i]) + " " + str(veinat) )
-            resultat[j].pop(i)
-            resultat[j].insert(i,x)
+def Llista_Resultat(inicial):
+    proxim=[]
+    py=0
+    for j in inicial:
+        px=0
+        linea = []
+        for i in j:
+            veinats=Recompte_veinat(inicial,py,px,n,m)
+            linea.append(Actualitza(veinats, i ))
+            px+=1
+        proxim.append(linea)
+        py+=1
+
             
 
-    return resultat
+    return proxim
 
 def Recompte_veinat(inicial, linea, columna, n, m):
     veinat=0
@@ -91,8 +94,8 @@ def Recompte_veinat(inicial, linea, columna, n, m):
     
     return veinat
 
-def Actualitza(inicial, veinat, linea, columna):
-    if inicial[linea][columna]=='B':
+def Actualitza(veinat, isBacteria):
+    if isBacteria=='B':
         if veinat<2 or veinat >3:
             return "."
         else:
@@ -109,9 +112,7 @@ pla=[]
 
 pla=Crea_Pla(pla,n,m)
 inicial=Valors_Inicials(pla)
-for i in inicial:
-    print(i)
-final=Llista_Resultat(inicial, pla, n, m)
+final=Llista_Resultat(inicial)
 
 for i in final:
     print(i)
